@@ -1,6 +1,4 @@
-// test/UniPeg.test.js
 // SPDX-License-Identifier: MIT
-
 const { expect } = require('chai');
 
 // Import utilities from Test Helpers
@@ -35,5 +33,13 @@ contract('UniPeg', function ([ creator, other ]) {
 
   it('assigns the initial total supply to the creator', async function () {
     expect(await this.token.balanceOf(creator)).to.be.bignumber.equal(TOTAL_SUPPLY);
+  });
+
+  it('Burn test' , async() => {
+    token = await UniPeg.new(TOTAL_SUPPLY);
+    await this.token.burn(1000000);
+    const totalSupply = await this.token.totalSupply();
+    console.log(totalSupply);
+    assert.equal(totalSupply , 20000000);
   });
 });

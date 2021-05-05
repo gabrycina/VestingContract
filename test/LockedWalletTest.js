@@ -111,12 +111,10 @@ contract('LockedWallet', (accounts) => {
         //create the wallet contract 
         lockedWallet = await LockedWallet.new(creator, owner, now);
         
-
         //create Token contract
         let unipeg = await UniPeg.new(TOTAL_SUPPLY);
 
-        //TODO: uncomment when total supply added to token contract
-        //check contract initiated well and has 1M of unipegs
+        //check contract initialized well and has 1M of unipegs
         assert(21000000 == await unipeg.balanceOf(creator)); 
 
         //load the wallet with some unipegs

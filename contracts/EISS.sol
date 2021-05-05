@@ -32,7 +32,11 @@ contract EISS {
         //Calculate blocks passed since vesting
         uint blocksPassed = block.number - creationBlock;
 
-        //Konstant calc
+        //Reset to 3 Months if greater
+        if(blocksPassed > 525600)
+            blocksPassed = 525600;
+
+        //Constant calc
         uint k = (interest/yearOfBlocks) * blocksPassed;
         
         unipeg.burn(k*vestedUnipeg);

@@ -13,7 +13,6 @@ contract('LockedWalletFactory', (accounts) => {
         creator = accounts[0];
         owner = accounts[1];
         lockedWalletFactory = await LockedWalletFactory.new({from: creator});
-
     });
 
     it("Factory created contract is working well", async () => {
