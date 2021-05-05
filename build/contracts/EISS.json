@@ -1,0 +1,121 @@
+{
+  "contractName": "EISS",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/gabrycina/Documents/VestingContract/contracts/EISS.sol\":\"EISS\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/gabrycina/Documents/VestingContract/contracts/EISS.sol\":{\"keccak256\":\"0xd7b390a9ba2e46dab45dc16eb4aa01eeb3eb3796f0bc622fdad92d9da416849d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1342a0edd3802b33adaa5c1ce9ae708333e23f7500eb3c0fb23716ea3be50d3a\",\"dweb:/ipfs/QmRwpM2f4zX86pgmWXETjtri9cHcrJQX7kbH1pvfCFUkUk\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220b262793ea567b25871675212340d3e8e966b17cbf61f5633302502cd342f941764736f6c63430008030033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220b262793ea567b25871675212340d3e8e966b17cbf61f5633302502cd342f941764736f6c63430008030033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "69:24:0:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "69:24:0:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract EISS {\r\n    \r\n}",
+  "sourcePath": "C:/Users/gabrycina/Documents/VestingContract/contracts/EISS.sol",
+  "ast": {
+    "absolutePath": "/C/Users/gabrycina/Documents/VestingContract/contracts/EISS.sol",
+    "exportedSymbols": {
+      "EISS": [
+        2
+      ]
+    },
+    "id": 3,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:0"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "EISS",
+        "nameLocation": "78:4:0",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "69:24:0"
+      }
+    ],
+    "src": "33:60:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/gabrycina/Documents/VestingContract/contracts/EISS.sol",
+    "exportedSymbols": {
+      "EISS": [
+        2
+      ]
+    },
+    "id": 3,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:0"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "EISS",
+        "nameLocation": "78:4:0",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "69:24:0"
+      }
+    ],
+    "src": "33:60:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.3+commit.8d00100c.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-05T17:41:05.340Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
