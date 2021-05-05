@@ -1,5 +1,6 @@
 const LockedWallet = artifacts.require("../contracts/LockedWallet.sol");
 const UniPeg = artifacts.require('UniPeg');
+const truffleAssert = require('truffle-assertions');
 
 //Set up a default amount of ether and gas to test with
 let ethToSend = web3.utils.toWei("1", "ether");
@@ -12,8 +13,6 @@ const { BN, expectEvent, expectRevert, constants } = require('openzeppelin-test-
 
 contract('LockedWallet', (accounts) => {
     let lockedWallet;
-    const NAME = 'UniPeg';
-    const SYMBOL = 'UPG';
     const TOTAL_SUPPLY = new BN('21000000');
 
     before(async () => {
@@ -29,8 +28,12 @@ contract('LockedWallet', (accounts) => {
         
         //create the contract and load the contract with some eth
         lockedWallet = await LockedWallet.new(creator, owner, now);
-        await lockedWallet.send(ethToSend, {from: creator});
-        assert(ethToSend == await web3.eth.getBalance(lockedWallet.address));
+        let tx = await lockedWallet.send(ethToSend, {from: creator});
+        
+        //See if received event is emitted when eth sent
+        truffleAssert.eventEmitted(tx, 'Received', async (ev) => {
+            return ethToSend == await web3.eth.getBalance(lockedWallet.address);
+        });
         
         let balanceBefore = await web3.eth.getBalance(owner);
         
@@ -118,12 +121,12 @@ contract('LockedWallet', (accounts) => {
 
         //load the wallet with some unipegs
         let amountOfUnipegs = 1000;
-        await unipeg.transfer(lockedWallet.address, amountOfUnipegs, {from: creator});
+        let tx = await unipeg.transfer(lockedWallet.address, amountOfUnipegs, {from: creator});
 
-        //check that LockedWallet has unipegs
-        assert(amountOfUnipegs == await unipeg.balanceOf(lockedWallet.address));
-
-       
+        //See if received event is emitted when UPG sent
+        truffleAssert.eventEmitted(tx, 'Transfer', async (ev) => {
+            return amountOfUnipegs == await unipeg.balanceOf(lockedWallet.address);
+        });
 
         //now withdraw unipegs
         await lockedWallet.withdrawTokens(unipeg.address, {from: owner});
