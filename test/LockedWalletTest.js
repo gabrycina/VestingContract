@@ -1,4 +1,5 @@
 const LockedWallet = artifacts.require("../contracts/LockedWallet.sol");
+const UniPeg = artifacts.require('UniPeg');
 
 //Set up a default amount of ether and gas to test with
 let ethToSend = web3.utils.toWei("1", "ether");
@@ -6,8 +7,14 @@ let gas = web3.utils.toWei("0.01", "ether");
 let creator;
 let owner;
 
+// Import utilities from Test Helpers
+const { BN, expectEvent, expectRevert, constants } = require('openzeppelin-test-helpers');
+
 contract('LockedWallet', (accounts) => {
     let lockedWallet;
+    const NAME = 'UniPeg';
+    const SYMBOL = 'UPG';
+    const TOTAL_SUPPLY = new BN('21000000');
 
     before(async () => {
         creator = accounts[0];
@@ -100,26 +107,30 @@ contract('LockedWallet', (accounts) => {
 
         //create the wallet contract 
         lockedWallet = await LockedWallet.new(creator, owner, now);
+        
 
         //create Token contract
-        let Token = await Token.new({from: creator});
-        
-        //check contract initiated well and has 1M of tokens
-        assert(1000000000000 == await Token.balanceOf(creator));        
+        let unipeg = await UniPeg.new(TOTAL_SUPPLY);
 
-        //load the wallet with some tokens
-        let amountOfTokens = 1000000000;
-        await Token.transfer(LockedWallet.address, amountOfTokens, {from: creator});
+        //TODO: uncomment when total supply added to token contract
+        //check contract initiated well and has 1M of unipegs
+        assert(21000000 == await unipeg.balanceOf(creator)); 
 
-        //check that LockedWallet has Tokens
-        assert(amountOfTokens == await Token.balanceOf(lockedWallet.address));
+        //load the wallet with some unipegs
+        let amountOfUnipegs = 1000;
+        await unipeg.transfer(lockedWallet.address, amountOfUnipegs, {from: creator});
 
-        //now withdraw tokens
-        await lockedWallet.withdrawTokens(Token.address, {from: owner});
+        //check that LockedWallet has unipegs
+        assert(amountOfUnipegs == await unipeg.balanceOf(lockedWallet.address));
+
+       
+
+        //now withdraw unipegs
+        await lockedWallet.withdrawTokens(unipeg.address, {from: owner});
 
         //check the balance is correct
-        let balance = await Token.balanceOf(owner);
-        assert(balance.toNumber() == amountOfTokens);
+        let balance = await unipeg.balanceOf(owner);
+        assert(balance.toNumber() == amountOfUnipegs);
     });
 
     it("Allow getting info about the wallet", async () => {
